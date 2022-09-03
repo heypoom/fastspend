@@ -49,10 +49,11 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 
 ## Roadmap
 
-- [ ] Setup Cloudflare Workers
-- [ ] Maintain database of keywords (budget, payee)
+- [x] Setup Cloudflare Workers locally
+- [ ] Deploy Cloudflare Workers to production
+- [x] Maintain database of keywords (budget, payee)
 - [ ] Standalone Rust library for parsing commands and invoking event handlers given the configuration
-- [ ] Where to host the database?
+- [ ] Host the database in Durable Objects, KV or PostgreSQL
 - [ ] Generate PAT (personal access token)
 - [ ] Use a parser generator to parse our syntax, e.g. with Pest, Tree-sitter, or just plain 'ol Regex!
 - [ ] Let's try TDD! (test-driven development)
