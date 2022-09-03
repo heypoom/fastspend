@@ -6,13 +6,6 @@ FastSpend aims to be service-agnostic, so you can log your spending to multiple 
 
 FastSpend also aims to provide various frontends to log your spending. Currently, we offer a Svelte-powered progressive web app. Soon, we may implement a Rust-powered CLI, Raycast Extension and a chatbot, 
 
-## Tech Stack
-
-- The frontend is built with Svelte and TypeScript as a PWA (Progressive Web Application).
-
-- The API is built with Rust, Cloudflare Workers and PostgreSQL.
-  - The only reason I went with PostgreSQL in this case is because I haven't wrote for a very long time, as I always use Prisma in my other projects. If I were to implement this as a production project, I would go with NoSQL instead as we don't need a lot of relations to store the configuration state.
-
 ## Syntax
 
 - Use keywords to add spending quickly
@@ -45,6 +38,14 @@ FastSpend also aims to provide various frontends to log your spending. Currently
 The initial inspiration is from [@dtinth](https://dt.in.th)'s excellent talk on "[Let’s build a personal assistant and level-up your coding skills!](https://dt.in.th/personal-assistant.html)". In this talk, Thai creates a LINE chatbot to log his spending and do various things.
 
 I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app takes 4 - 5 taps to register one transaction - I'm way too lazy to do that.
+
+## Technology
+
+- The frontend is built with Svelte and TypeScript as a PWA (Progressive Web Application).
+
+- The API is built with Rust, Cloudflare Workers and PostgreSQL.
+  - The only reason I went with PostgreSQL in this case is because I haven't wrote for a very long time, as I always use Prisma in my other projects. If I were to implement this as a production project, I would go with NoSQL instead as we don't need a lot of relations to store the configuration state.
+
 
 ## Roadmap
 
