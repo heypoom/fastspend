@@ -101,7 +101,7 @@ impl Config {
             Some(modifier) => self
                 .accounts
                 .iter()
-                .any(|a| a.inflow_modifiers.iter().any(|m| m.contains(&modifier))),
+                .any(|a| a.inflow_modifiers.iter().any(|m| m == &modifier)),
         }
     }
 }
