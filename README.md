@@ -60,7 +60,7 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 
 **Frontends**
 - [ ] Raycast Command
-- [ ] Rust-powered CLI to call the API, built with Rust: sf 1000f
+- [ ] Rust-powered CLI to call the API, built with Rust. e.g. `sf 1000sb`
 - [ ] Chatbot Integration - Messenger or LINE?
 - [ ] PWA to add and modify keyword mapping dynamically; should export as JSON for configuration.
 - [ ] iOS widget or application, powered by Swift?
