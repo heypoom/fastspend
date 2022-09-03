@@ -18,3 +18,26 @@ impl Account {
         }
     }
 }
+
+pub fn default_account(accounts: &Vec<Account>) -> Option<&Account> {
+    accounts.iter().find(|a| a.default == true)
+}
+
+pub fn account_by_modifier(accounts: &Vec<Account>, modifier: Option<String>) -> Option<&Account> {
+    match modifier {
+        None => default_account(accounts),
+        Some(modifier) if modifier.is_empty() => default_account(accounts),
+        Some(modifier) => {
+            let account = accounts.iter().find(|a| {
+                a.inflow_modifiers.iter().any(|m| m == &modifier)
+                    || a.outflow_modifiers.iter().any(|m| m == &modifier)
+            });
+
+            if account == None {
+                return default_account(accounts);
+            }
+
+            account
+        }
+    }
+}

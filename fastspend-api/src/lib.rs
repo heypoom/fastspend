@@ -30,7 +30,11 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
             let ynab_token = ctx.secret("YNAB_TOKEN")?.to_string();
 
             let config = config::create_mock_config();
-            let account = config.account_by_modifier(modifier);
+            let account = config::account_by_modifier(&config.accounts, modifier);
+
+            if account == None {
+                return Response::error("account not found", 500);
+            }
 
             if let Ok(payload) = payload {
                 let keyword = config.get_keyword(payload.command.clone());
@@ -40,6 +44,7 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
                 }
 
                 let keyword = keyword.unwrap();
+                let account = account.unwrap();
 
                 let amount = 6969.69;
 

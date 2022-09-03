@@ -1,7 +1,7 @@
 mod account;
 mod keyword;
 
-pub use account::Account;
+pub use account::{account_by_modifier, default_account, Account};
 pub use keyword::{Keyword, KeywordType};
 
 use std::collections::HashMap;
@@ -77,7 +77,7 @@ impl Config {
         modifier: String,
         id: String,
     ) -> () {
-        if self.default_account() != None {
+        if default_account(&self.accounts) != None {
             return;
         }
 
@@ -88,29 +88,6 @@ impl Config {
             inflow_modifiers: vec![],
             outflow_modifiers: vec![modifier],
         });
-    }
-
-    pub fn default_account(&self) -> Option<&Account> {
-        self.accounts.iter().find(|a| a.default == true)
-    }
-
-    pub fn account_by_modifier(&self, modifier: Option<String>) -> Option<&Account> {
-        match modifier {
-            None => self.default_account(),
-            Some(modifier) if modifier.is_empty() => self.default_account(),
-            Some(modifier) => {
-                let account = self.accounts.iter().find(|a| {
-                    a.inflow_modifiers.iter().any(|m| m == &modifier)
-                        || a.outflow_modifiers.iter().any(|m| m == &modifier)
-                });
-
-                if account == None {
-                    return self.default_account();
-                }
-
-                account
-            }
-        }
     }
 }
 
