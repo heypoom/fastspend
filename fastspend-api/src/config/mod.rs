@@ -3,14 +3,24 @@ mod keyword;
 use keyword::{Keyword, KeywordType};
 use std::collections::HashMap;
 
+pub struct Account {
+    pub id: String,
+    pub title: String,
+    pub default: bool,
+    pub inflow: bool,
+    pub modifiers: Vec<String>,
+}
+
 pub struct Config {
     pub keywords: HashMap<String, Keyword>,
+    pub accounts: Vec<Account>,
 }
 
 impl Config {
     pub fn new() -> Config {
         Config {
             keywords: HashMap::new(),
+            accounts: vec![],
         }
     }
 
@@ -39,6 +49,10 @@ impl Config {
     pub fn get_keyword(&self, alias: String) -> Option<&Keyword> {
         self.keywords.get(&alias)
     }
+
+    pub fn default_account(&self) -> Option<&Account> {
+        self.accounts.iter().find(|a| a.default == true)
+    }
 }
 
 static MOCK_CATEGORY: &'static str = "d3d92867-779b-453f-bf5b-0adf9859af96";
@@ -47,6 +61,14 @@ pub fn create_mock_config() -> Config {
     let mut config = Config::new();
     config.add_category("f".into(), MOCK_CATEGORY.into(), None);
     config.add_payee("sb".into(), "Starbucks".into());
+
+    config.accounts.push(Account {
+        id: "f076943a-aa68-46d5-a78f-00880fa8f067".into(),
+        title: "Credit Card".into(),
+        default: true,
+        inflow: false,
+        modifiers: vec!["c".into()],
+    });
 
     config
 }
