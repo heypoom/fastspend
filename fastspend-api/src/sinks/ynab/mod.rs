@@ -15,21 +15,21 @@ pub struct YnabPayload {
 pub struct YnabTransaction {
     pub account_id: String,
     pub amount: i64,
-    pub payee_name: String,
-    pub category_id: String,
-    pub memo: String,
+    pub payee_name: Option<String>,
+    pub category_id: Option<String>,
+    pub memo: Option<String>,
     pub cleared: String,
     pub approved: bool,
-    pub flag_color: String,
+    pub flag_color: Option<String>,
     pub date: String,
 }
 
 pub struct TransactionInput {
     pub account_id: String,
-    pub category_id: String,
-    pub flag_color: String,
-    pub payee_name: String,
-    pub memo: String,
+    pub category_id: Option<String>,
+    pub flag_color: Option<String>,
+    pub payee_name: Option<String>,
+    pub memo: Option<String>,
     pub amount: f64,
 }
 
@@ -63,7 +63,7 @@ pub async fn create_ynab_transaction(
             memo: memo,
             flag_color: flag_color,
             approved: true,
-            cleared: "cleared".to_owned(),
+            cleared: "cleared".into(),
             date: Utc::today().format("%Y-%m-%d").to_string(),
         },
     };
