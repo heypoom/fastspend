@@ -18,8 +18,6 @@ pub async fn command_handler(
 ) -> Result<worker::Response, worker::Error> {
     let payload = req.json::<CommandPayload>().await;
 
-    let modifier = Some("c".to_owned());
-
     let ynab_budget_id = ctx.secret("YNAB_BUDGET_ID")?.to_string();
     let ynab_token = ctx.secret("YNAB_TOKEN")?.to_string();
 
@@ -35,10 +33,10 @@ pub async fn command_handler(
             console_log!("Command: {:?}", command);
 
             if let Some(payee_name) = command.payee_name {
-                config.register_payee(command.payee_key.expect("oops"), payee_name);
+                config.register_payee(command.payee_key.unwrap(), payee_name);
             }
 
-            let account = config::account_by_modifier(&config.accounts, modifier.clone());
+            let account = config::account_by_modifier(&config.accounts, command.modifier);
 
             if account == None {
                 return Response::error("account not found", 500);
