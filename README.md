@@ -42,22 +42,22 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 ## Technology
 
 - The frontend is built with Svelte and TypeScript as a PWA (Progressive Web Application).
-
-- The API is built with Rust, Cloudflare Workers and PostgreSQL.
-  - The only reason I went with PostgreSQL in this case is because I haven't wrote for a very long time, as I always use Prisma in my other projects. If I were to implement this as a production project, I would go with NoSQL instead as we don't need a lot of relations to store the configuration state.
+- The API is built with Rust and Cloudflare Workers.
 
 
 ## Roadmap
 
 - [x] Setup Cloudflare Workers locally
 - [x] Deploy Cloudflare Workers to production for personal usage
-- [ ] Allow configuring different YNAB Token and Budget ID
 - [x] Maintain database of keywords (budget, payee)
-- [ ] Standalone Rust library for parsing commands and invoking event handlers given the configuration
-- [ ] Host the database in Durable Objects, KV or PostgreSQL
-- [ ] Generate PAT (personal access token)
-- [ ] Use a parser generator to parse our syntax, e.g. with Pest, Tree-sitter, or just plain 'ol Regex!
+- [x] Use a parser generator to parse our syntax, e.g. with Pest, Tree-sitter, or just plain 'ol Regex!
+- [x] Write some unit tests in Rust as a starting point
+- [ ] Extract controller to it's own testable unit, with unit tests
+  - [ ] Create a standalone Rust library for parsing commands and invoking event handlers given the configuration
 - [ ] Let's try TDD! (test-driven development)
+- [ ] Host the configuration data in Durable Objects or KV
+- [ ] Allow configuring different YNAB Token and Budget ID
+  - [ ] Generate personal access token for each FastSpend users
 
 **Frontends**
 - [ ] Raycast Command
@@ -67,18 +67,18 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [ ] iOS widget or application, powered by Swift?
 
 **Syntax Support**
-- [ ] Batch transactions with `,` or `/`
-- [ ] Use dashes (`-`) to add comments
-- [ ] Use `!` to add modifier: `!t` for transfer, `!r` for refund/reimburse, `!d` for debit, `!i` for income
-- [ ] Keyword can be either budget or payee. We assume that it's a budget first, then lookup payee next
-- [ ] Explicitly query to target payee with `@` sign
-- [ ] Use `$` for special commands, e.g. `$5` is 5 star rating
+- [x] Batch transactions with `,`
+- [x] Use colons (`:`) to add payee name
+- [x] Use `!` to add modifier: `!t` for transfer, `!r` for refund/reimburse, `!d` for debit, `!i` for income
+- [x] Keyword can be either budget or payee.
+- [x] Explicitly target payee with `@` sign
+- [x] Use `$` to add tags, e.g. `$5` is 5 star rating
 - [ ] Use emojis as keyword - e.g. ☕️ for Starbucks
 - [ ] Command to register budget categories - e.g. `!c f Food, 1689063412`
 - [ ] Command to register payee - e.g. `!p fc Factory Coffee $ Drinks`
 
 **Logging Sources**
-- [ ] YNAB API (You Need A Budget API)
+- [x] YNAB API (You Need A Budget API)
 - [ ] Airtable
 - [ ] Firebase
 
