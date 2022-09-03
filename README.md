@@ -50,7 +50,8 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 ## Roadmap
 
 - [x] Setup Cloudflare Workers locally
-- [ ] Deploy Cloudflare Workers to production
+- [x] Deploy Cloudflare Workers to production for personal usage
+- [ ] Allow configuring different YNAB Token and Budget ID
 - [x] Maintain database of keywords (budget, payee)
 - [ ] Standalone Rust library for parsing commands and invoking event handlers given the configuration
 - [ ] Host the database in Durable Objects, KV or PostgreSQL
