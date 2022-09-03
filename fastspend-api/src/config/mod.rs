@@ -26,7 +26,7 @@ impl Config {
         }
     }
 
-    pub fn add_category(&mut self, alias: String, id: String, title: Option<String>) -> () {
+    pub fn register_category(&mut self, alias: String, id: String, title: Option<String>) -> () {
         self.keywords.insert(
             alias,
             Keyword {
@@ -38,7 +38,7 @@ impl Config {
         );
     }
 
-    pub fn add_payee(&mut self, alias: String, name: String) -> () {
+    pub fn register_payee(&mut self, alias: String, name: String) -> () {
         self.keywords.insert(
             alias,
             Keyword {
@@ -48,6 +48,30 @@ impl Config {
                 payee_name: name.into(),
             },
         );
+    }
+
+    pub fn create_payee_with_category_alias(
+        &mut self,
+        alias: String,
+        name: String,
+        category_alias: String,
+    ) -> () {
+        if let Some(category) = self.get_keyword(category_alias) {
+            // If the category alias does not resolve to a category, fail the operation.
+            if category.r#type != KeywordType::CATEGORY {
+                return;
+            }
+
+            self.keywords.insert(
+                alias,
+                Keyword {
+                    r#type: KeywordType::PAYEE,
+                    payee_name: name.into(),
+                    category_id: category.category_id.clone(),
+                    category_name: category.category_name.clone(),
+                },
+            );
+        }
     }
 
     pub fn get_keyword(&self, alias: String) -> Option<&Keyword> {
@@ -80,8 +104,10 @@ static MOCK_PAYEE: &'static str = "Starbucks Coffee";
 pub fn create_mock_config() -> Config {
     let mut config = Config::new();
 
-    config.add_category("f".into(), MOCK_CATEGORY.into(), None);
-    config.add_payee("sb".into(), MOCK_PAYEE.into());
+    config.register_category("f".into(), MOCK_CATEGORY.into(), None);
+
+    // Register with the command "100f@sb : Starbucks Coffee"
+    config.create_payee_with_category_alias("sb".into(), MOCK_PAYEE.into(), "f".into());
     config.set_default_expense_account("Credit Card".into(), "c".into(), MOCK_ACCOUNT.into());
 
     config
