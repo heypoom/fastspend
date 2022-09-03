@@ -1,6 +1,6 @@
+use reqwest;
 use serde::{Deserialize, Serialize};
-use serde_json::json;
-use worker::*;
+use worker::{console_log, event, Date, Env, Request, Response, Result, Router};
 
 mod utils;
 
@@ -19,6 +19,13 @@ struct CommandPayload {
     command: String,
 }
 
+pub async fn log_to_ynab() -> std::result::Result<bool, reqwest::Error> {
+    let res = reqwest::get("http://icanhazip.com").await?.text().await?;
+    console_log!("My IP is {}", res);
+
+    Ok(true)
+}
+
 #[event(fetch)]
 pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response> {
     log_request(&req);
@@ -34,6 +41,8 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
             let payload = req.json::<CommandPayload>().await;
 
             if let Ok(payload) = payload {
+                let _result = log_to_ynab().await;
+
                 return Response::ok(payload.command);
             }
 
