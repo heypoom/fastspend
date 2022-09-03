@@ -38,13 +38,14 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
                     return Response::error("keyword undefined", 400);
                 }
 
-                let tx_info = keyword.unwrap().into_transaction();
-                let amount = 1999.20;
+                let keyword = keyword.unwrap();
+
+                let amount = 6969.69;
 
                 let input = TransactionInput {
                     account: account.clone(),
-                    category_id: tx_info.category_id,
-                    payee_name: tx_info.payee,
+                    category_id: keyword.category_id.clone(),
+                    payee_name: keyword.payee_name.clone(),
                     flag_color: None,
                     memo: None,
                     amount: amount,

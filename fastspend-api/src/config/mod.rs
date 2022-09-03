@@ -31,8 +31,9 @@ impl Config {
             alias,
             Keyword {
                 r#type: KeywordType::CATEGORY,
-                key: id,
-                title: title,
+                category_id: Some(id),
+                category_name: title,
+                payee_name: None,
             },
         );
     }
@@ -42,8 +43,9 @@ impl Config {
             alias,
             Keyword {
                 r#type: KeywordType::PAYEE,
-                key: name,
-                title: None,
+                category_id: None,
+                category_name: None,
+                payee_name: name.into(),
             },
         );
     }
@@ -72,24 +74,22 @@ impl Config {
 }
 
 static MOCK_CATEGORY: &'static str = "d3d92867-779b-453f-bf5b-0adf9859af96";
+static MOCK_ACCOUNT: &'static str = "f076943a-aa68-46d5-a78f-00880fa8f067";
+static MOCK_PAYEE: &'static str = "Starbucks Coffee";
 
 pub fn create_mock_config() -> Config {
     let mut config = Config::new();
-    config.add_category("f".into(), MOCK_CATEGORY.into(), None);
-    config.add_payee("sb".into(), "Starbucks".into());
 
-    config.set_default_expense_account(
-        "Credit Card".into(),
-        "c".into(),
-        "f076943a-aa68-46d5-a78f-00880fa8f067".into(),
-    );
+    config.add_category("f".into(), MOCK_CATEGORY.into(), None);
+    config.add_payee("sb".into(), MOCK_PAYEE.into());
+    config.set_default_expense_account("Credit Card".into(), "c".into(), MOCK_ACCOUNT.into());
 
     config
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::config::{create_mock_config, KeywordType, MOCK_CATEGORY};
+    use crate::config::{create_mock_config, KeywordType, MOCK_CATEGORY, MOCK_PAYEE};
 
     #[test]
     fn it_gets_the_keyword() {
@@ -97,10 +97,10 @@ mod tests {
 
         let keyword_f = config.get_keyword("f".into()).unwrap();
         assert_eq!(keyword_f.r#type, KeywordType::CATEGORY);
-        assert_eq!(keyword_f.key, MOCK_CATEGORY);
+        assert_eq!(keyword_f.category_id, Some(MOCK_CATEGORY.into()));
 
         let keyword_sb = config.get_keyword("sb".into()).unwrap();
         assert_eq!(keyword_sb.r#type, KeywordType::PAYEE);
-        assert_eq!(keyword_sb.key, "Starbucks");
+        assert_eq!(keyword_sb.payee_name, Some(MOCK_PAYEE.into()));
     }
 }
