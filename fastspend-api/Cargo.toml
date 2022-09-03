@@ -1,5 +1,5 @@
 [package]
-name = "todo-worker"
+name = "fastspend-api-worker"
 version = "0.0.0"
 edition = "2018"
 
