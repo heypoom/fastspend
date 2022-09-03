@@ -1,19 +1,17 @@
 # FastSpend
 
-Log your daily spending lightning fast with short text snippets!
+Log your daily spending lightning fast with short text snippets! FastSpend is a tool to log your spending in seconds, powered by a lightning fast API written in Rust.
 
-FastSpend is a tool to log your spending in seconds, powered by a lightning fast API written in Rust.
+FastSpend aims to be service-agnostic, so you can log your spending to multiple sinks. Currently, it is implemented for the You Need A Budget API (YNAB API). Soon, we may offer plugins for logging to Airtable, Firebase, Plain Text, etc.
 
-## Stack
+FastSpend also aims to provide various frontends to log your spending. Currently, we offer a Svelte-powered progressive web app. Soon, we may implement a Rust-powered CLI, Raycast Extension and a chatbot, 
+
+## Tech Stack
 
 - The frontend is built with Svelte and TypeScript as a PWA (Progressive Web Application).
 
 - The API is built with Rust, Cloudflare Workers and PostgreSQL.
   - The only reason I went with PostgreSQL in this case is because I haven't wrote for a very long time, as I always use Prisma in my other projects. If I were to implement this as a production project, I would go with NoSQL instead as we don't need a lot of relations to store the configuration state.
-
-## Usage
-
-TBA
 
 ## Syntax
 
@@ -51,9 +49,48 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 ## Roadmap
 
 - [ ] Setup Cloudflare Workers
+- [ ] Maintain database of keywords (budget, payee)
+- [ ] Standalone Rust library for parsing commands and invoking event handlers given the configuration
+- [ ] Where to host the database?
+- [ ] Generate PAT (personal access token)
+- [ ] Let's try TDD! (test-driven development)
 
+**Frontends**
+- [ ] Raycast Command
+- [ ] Rust-powered CLI to call the API, built with Rust: sf 1000f
+- [ ] Chatbot Integration - Messenger or LINE?
+- [ ] PWA to add and modify keyword mapping dynamically; should export as JSON for configuration.
+- [ ] iOS widget or application, powered by Swift?
+
+**Syntax Support**
+- [ ] Batch transactions with , or /
+- [ ] Use dashes (-) to add comments
+- [ ] Use ! to add modifier, !t for transfer, !r for refund/reimburse, !d for debit, !i for income
+- [ ] Keyword can be either budget or payee. We assume that it's a budget first, then lookup payee next
+- [ ] Explicitly query to target payee with @
+- [ ] Use $ for special commands, e.g. $5 is 5 star rating
+- [ ] Use emojis as keyword - e.g. ☕️ for starbucks
+- [ ] Command to register budget categories - e.g. !c f Food, 1689063412
+- [ ] Command to register payee - e.g. !p fc Factory Coffee $ Drinks
+
+**Logging Sources**
+- [ ] YNAB API (You Need A Budget API)
+- [ ] Airtable
+- [ ] Firebase
+
+**Webapp Features**
 - [ ] Implement Syntax Highlighting in PWA
 - [ ] Implement Autocompletion in PWA
-- [ ]
+- [ ] Implement standard PWA features (e.g. offline-first support, manifest)
+
+**Write-up**
+- [ ] Write a Blog on this
+
+**Features Ideas**
+- [ ] Automatically log spending from notification interception or web scraping, automatically sync and match
+- [ ] Pre-populated widget UI with spending behaviour, use previous transaction data or logged widget/spending group. One-tap to log spending from history.
+- [ ] Multiple logging backends as Rust plugin: YNAB API, Airtable, Plain Text, Firebase. Should be able to write unit test
+- [ ] Language grammar with treesitter, pest - or just Regex!
+- [ ] Natural language input instead of command-based input
 
 
