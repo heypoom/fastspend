@@ -16,28 +16,28 @@ FastSpend also aims to provide various frontends to log your spending. Currently
 ## Syntax
 
 - Use keywords to add spending quickly
-  - Example: "100f"
-  - The keyword can either represent a category (e.g. f = food), or a payee (e.g. kfc = kentucky fried chicken)
+  - Example: `100f`
+  - The keyword can either represent a category (e.g. `f` is food), or a payee (e.g. `kfc` is Kentucky Fried Chicken)
 
-- Use the exclamation mark (!) to add modifiers:
-  - Example: "100f!t"
+- Use the exclamation mark (`!`) to add modifiers:
+  - Example: `100f!t`
   - Outflow Modifiers:
-    - credit card: !c (default)
-    - bank transfer: !t
-    - debit card: !d
+    - credit card: `!c` (default payment method)
+    - bank transfer: `!t`
+    - debit card: `!d`
   - Inflow Modifiers:
-    - income: !i
-    - refund or reimbursement: !r
+    - income: `!i`
+    - refund or reimbursement: `!r`
 
-- Use the at sign (@) to explicitly denote that the keyword represents a payee
-  - Example: "100kfc"
+- Use the at sign (`@`) to explicitly denote that the keyword represents a payee
+  - Example: `100kfc`
   - this is used when the keyword is ambiguous, and we're not sure if it is a category or a payee
 
-- Use the at sign (@) with the colon sign (:) to add a new payee
-  - Example: "100f@sb : Starbucks" associates the "sb" keyword with the "Starbucks" payee, and utilizes the "Food" (f) category
+- Use the at sign (`@`) in conjunction with the colon sign (`:`) to add a new payee
+  - Example: `100f@sb : Starbucks` associates the `sb` keyword with the `Starbucks` payee, and utilizes the "Food" (`f`) category
 
-- Batch add multiple transactions with comma (,):
-  - Example: "780kfc, 550kfc, 110s" registers 3 transactions at once, with different amount and keywords.
+- Batch add multiple transactions with the comma sign (`,`):
+  - Example: `780kfc, 550kfc, 110s` registers 3 transactions at once, with different amount and keywords.
   - Spaces are optional
 
 ## Inspiration
@@ -53,6 +53,7 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [ ] Standalone Rust library for parsing commands and invoking event handlers given the configuration
 - [ ] Where to host the database?
 - [ ] Generate PAT (personal access token)
+- [ ] Use a parser generator to parse our syntax, e.g. with Pest, Tree-sitter, or just plain 'ol Regex!
 - [ ] Let's try TDD! (test-driven development)
 
 **Frontends**
@@ -63,15 +64,15 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [ ] iOS widget or application, powered by Swift?
 
 **Syntax Support**
-- [ ] Batch transactions with , or /
-- [ ] Use dashes (-) to add comments
-- [ ] Use ! to add modifier, !t for transfer, !r for refund/reimburse, !d for debit, !i for income
+- [ ] Batch transactions with `,` or `/`
+- [ ] Use dashes (`-`) to add comments
+- [ ] Use `!` to add modifier: `!t` for transfer, `!r` for refund/reimburse, `!d` for debit, `!i` for income
 - [ ] Keyword can be either budget or payee. We assume that it's a budget first, then lookup payee next
-- [ ] Explicitly query to target payee with @
-- [ ] Use $ for special commands, e.g. $5 is 5 star rating
-- [ ] Use emojis as keyword - e.g. ☕️ for starbucks
-- [ ] Command to register budget categories - e.g. !c f Food, 1689063412
-- [ ] Command to register payee - e.g. !p fc Factory Coffee $ Drinks
+- [ ] Explicitly query to target payee with `@` sign
+- [ ] Use `$` for special commands, e.g. `$5` is 5 star rating
+- [ ] Use emojis as keyword - e.g. ☕️ for Starbucks
+- [ ] Command to register budget categories - e.g. `!c f Food, 1689063412`
+- [ ] Command to register payee - e.g. `!p fc Factory Coffee $ Drinks`
 
 **Logging Sources**
 - [ ] YNAB API (You Need A Budget API)
@@ -90,7 +91,6 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [ ] Automatically log spending from notification interception or web scraping, automatically sync and match
 - [ ] Pre-populated widget UI with spending behaviour, use previous transaction data or logged widget/spending group. One-tap to log spending from history.
 - [ ] Multiple logging backends as Rust plugin: YNAB API, Airtable, Plain Text, Firebase. Should be able to write unit test
-- [ ] Language grammar with treesitter, pest - or just Regex!
 - [ ] Natural language input instead of command-based input
 
 
