@@ -1,12 +1,23 @@
 use serde::Serialize;
 
-#[derive(PartialEq, Default, Debug, Clone, Serialize)]
+#[derive(PartialEq, Debug, Clone, Serialize)]
+pub enum ModifierType {
+    INFLOW,
+    OUTFLOW,
+}
+
+#[derive(PartialEq, Debug, Clone, Serialize)]
+pub struct Modifier {
+    pub r#type: ModifierType,
+    pub alias: String,
+}
+
+#[derive(PartialEq, Debug, Clone, Serialize)]
 pub struct Account {
     pub id: String,
     pub title: String,
     pub default: bool,
-    pub inflow_modifiers: Vec<String>,
-    pub outflow_modifiers: Vec<String>,
+    pub modifiers: Vec<Modifier>,
 }
 
 impl Account {
@@ -14,7 +25,10 @@ impl Account {
         match modifier {
             None => false,
             Some(modifier) if modifier.is_empty() => false,
-            Some(modifier) => self.inflow_modifiers.iter().any(|m| m == &modifier),
+            Some(modifier) => self
+                .modifiers
+                .iter()
+                .any(|m| &m.alias == &modifier && m.r#type == ModifierType::INFLOW),
         }
     }
 }
@@ -28,10 +42,9 @@ pub fn account_by_modifier(accounts: &Vec<Account>, modifier: Option<String>) ->
         None => default_account(accounts),
         Some(modifier) if modifier.is_empty() => default_account(accounts),
         Some(modifier) => {
-            let account = accounts.iter().find(|a| {
-                a.inflow_modifiers.iter().any(|m| m == &modifier)
-                    || a.outflow_modifiers.iter().any(|m| m == &modifier)
-            });
+            let account = accounts
+                .iter()
+                .find(|a| a.modifiers.iter().any(|m| &m.alias == &modifier));
 
             if account == None {
                 return default_account(accounts);

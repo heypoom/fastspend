@@ -6,6 +6,8 @@ pub use keyword::{Keyword, KeywordType};
 
 use std::collections::HashMap;
 
+use self::account::{Modifier, ModifierType};
+
 pub struct Config {
     pub keywords: HashMap<String, Keyword>,
     pub accounts: Vec<Account>,
@@ -81,12 +83,16 @@ impl Config {
             return;
         }
 
+        let outflow_modifier = Modifier {
+            r#type: ModifierType::OUTFLOW,
+            alias: modifier,
+        };
+
         self.accounts.push(Account {
             id: id,
             title: name,
             default: true,
-            inflow_modifiers: vec![],
-            outflow_modifiers: vec![modifier],
+            modifiers: vec![outflow_modifier],
         });
     }
 }
