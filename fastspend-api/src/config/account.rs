@@ -8,3 +8,13 @@ pub struct Account {
     pub inflow_modifiers: Vec<String>,
     pub outflow_modifiers: Vec<String>,
 }
+
+impl Account {
+    pub fn is_inflow(&self, modifier: Option<String>) -> bool {
+        match modifier {
+            None => false,
+            Some(modifier) if modifier.is_empty() => false,
+            Some(modifier) => self.inflow_modifiers.iter().any(|m| m == &modifier),
+        }
+    }
+}

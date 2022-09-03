@@ -94,14 +94,22 @@ impl Config {
         self.accounts.iter().find(|a| a.default == true)
     }
 
-    pub fn is_inflow(&self, modifier: Option<String>) -> bool {
+    pub fn account_by_modifier(&self, modifier: Option<String>) -> Option<&Account> {
         match modifier {
-            None => false,
-            Some(modifier) if modifier.is_empty() => false,
-            Some(modifier) => self
-                .accounts
-                .iter()
-                .any(|a| a.inflow_modifiers.iter().any(|m| m == &modifier)),
+            None => self.default_account(),
+            Some(modifier) if modifier.is_empty() => self.default_account(),
+            Some(modifier) => {
+                let account = self.accounts.iter().find(|a| {
+                    a.inflow_modifiers.iter().any(|m| m == &modifier)
+                        || a.outflow_modifiers.iter().any(|m| m == &modifier)
+                });
+
+                if account == None {
+                    return self.default_account();
+                }
+
+                account
+            }
         }
     }
 }
