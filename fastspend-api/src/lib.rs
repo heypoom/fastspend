@@ -43,7 +43,8 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
                 let amount = 6969.69;
 
                 let input = TransactionInput {
-                    account: account.clone(),
+                    inflow: false,
+                    account_id: account.id.clone(),
                     category_id: keyword.category_id.clone(),
                     payee_name: keyword.payee_name.clone(),
                     flag_color: None,

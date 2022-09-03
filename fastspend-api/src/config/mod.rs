@@ -9,8 +9,8 @@ pub struct Account {
     pub id: String,
     pub title: String,
     pub default: bool,
-    pub inflow: bool,
-    pub modifiers: Vec<String>,
+    pub inflow_modifiers: Vec<String>,
+    pub outflow_modifiers: Vec<String>,
 }
 
 pub struct Config {
@@ -78,7 +78,12 @@ impl Config {
         self.keywords.get(&alias)
     }
 
-    pub fn set_default_expense_account(&mut self, name: String, alias: String, id: String) -> () {
+    pub fn set_default_expense_account(
+        &mut self,
+        name: String,
+        modifier: String,
+        id: String,
+    ) -> () {
         if self.default_account() != None {
             return;
         }
@@ -87,8 +92,8 @@ impl Config {
             id: id,
             title: name,
             default: true,
-            inflow: false,
-            modifiers: vec![alias],
+            inflow_modifiers: vec![],
+            outflow_modifiers: vec![modifier],
         });
     }
 

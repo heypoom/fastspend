@@ -27,7 +27,8 @@ pub struct YnabTransaction {
 }
 
 pub struct TransactionInput {
-    pub account: Account,
+    pub account_id: String,
+    pub inflow: bool,
     pub category_id: Option<String>,
     pub flag_color: Option<String>,
     pub payee_name: Option<String>,
@@ -48,8 +49,9 @@ pub async fn create_ynab_transaction(
     let client = reqwest::Client::new();
 
     let TransactionInput {
+        inflow,
         amount,
-        account,
+        account_id,
         category_id,
         payee_name,
         flag_color,
@@ -58,7 +60,7 @@ pub async fn create_ynab_transaction(
 
     let amount_in_millis = (amount * 1000.0) as i64;
 
-    let negated_amount = if account.inflow == true {
+    let negated_amount = if inflow == true {
         amount_in_millis
     } else {
         amount_in_millis.neg()
@@ -66,7 +68,7 @@ pub async fn create_ynab_transaction(
 
     let payload = YnabPayload {
         transaction: YnabTransaction {
-            account_id: account.id,
+            account_id: account_id,
             amount: negated_amount,
             payee_name: payee_name,
             category_id: category_id,
