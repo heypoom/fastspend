@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use sinks::ynab::TransactionInput;
 use utils::log_request;
 use worker::{event, Env, Request, Response, Result, Router};
 
@@ -24,15 +25,19 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
             let payload = req.json::<CommandPayload>().await;
 
             if let Ok(payload) = payload {
+                let input = TransactionInput {
+                    account_id: "NOOP".to_owned(),
+                    category_id: "NOOP".to_owned(),
+                    flag_color: "red".to_owned(),
+                    payee_name: "Automation Test".to_owned(),
+                    memo: "From Automation Test".to_owned(),
+                    amount: 10.20,
+                };
+
                 let _result = sinks::ynab::create_ynab_transaction(
-                    "NO_OP".to_owned(),
-                    "NO_OP".to_owned(),
-                    "NO_OP".to_owned(),
-                    "green".to_owned(),
-                    "Automation Test".to_owned(),
-                    "From Automation Test".to_owned(),
-                    1333.37,
-                    "NO_OP".to_owned(),
+                    input,
+                    "NOOP".to_owned(),
+                    "NOOP".to_owned(),
                 )
                 .await;
 

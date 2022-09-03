@@ -7,12 +7,12 @@ use worker::{console_log, Date};
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct Payload {
-    pub transaction: Transaction,
+pub struct YnabPayload {
+    pub transaction: YnabTransaction,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct Transaction {
+pub struct YnabTransaction {
     pub account_id: String,
     pub amount: i64,
     pub payee_name: String,
@@ -24,14 +24,18 @@ pub struct Transaction {
     pub date: String,
 }
 
+pub struct TransactionInput {
+    pub account_id: String,
+    pub category_id: String,
+    pub flag_color: String,
+    pub payee_name: String,
+    pub memo: String,
+    pub amount: f64,
+}
+
 pub async fn create_ynab_transaction(
+    input: TransactionInput,
     budget_id: String,
-    account_id: String,
-    category_id: String,
-    flag_color: String,
-    payee_name: String,
-    memo: String,
-    amount: f64,
     authorization_token: String,
 ) -> std::result::Result<bool, reqwest::Error> {
     let endpoint = format!(
@@ -41,8 +45,17 @@ pub async fn create_ynab_transaction(
 
     let client = reqwest::Client::new();
 
-    let payload = Payload {
-        transaction: Transaction {
+    let TransactionInput {
+        amount,
+        account_id,
+        category_id,
+        payee_name,
+        flag_color,
+        memo,
+    } = input;
+
+    let payload = YnabPayload {
+        transaction: YnabTransaction {
             account_id: account_id,
             amount: (amount * 1000.0) as i64,
             payee_name: payee_name,
