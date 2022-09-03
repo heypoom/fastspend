@@ -24,12 +24,13 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
         .get("/status", |_, _| Response::ok("ready"))
         .post_async("/command", |mut req, ctx| async move {
             let payload = req.json::<CommandPayload>().await;
+            let modifier = Some("c".to_owned());
 
             let ynab_budget_id = ctx.secret("YNAB_BUDGET_ID")?.to_string();
             let ynab_token = ctx.secret("YNAB_TOKEN")?.to_string();
 
             let config = config::create_mock_config();
-            let account = config.default_account().unwrap();
+            let account = config.account_by_modifier(modifier);
 
             if let Ok(payload) = payload {
                 let keyword = config.get_keyword(payload.command.clone());
