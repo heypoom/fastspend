@@ -1,17 +1,10 @@
+mod account;
 mod keyword;
 
-use keyword::{Keyword, KeywordType};
-use serde::Serialize;
-use std::collections::HashMap;
+pub use account::Account;
+pub use keyword::{Keyword, KeywordType};
 
-#[derive(PartialEq, Default, Debug, Clone, Serialize)]
-pub struct Account {
-    pub id: String,
-    pub title: String,
-    pub default: bool,
-    pub inflow_modifiers: Vec<String>,
-    pub outflow_modifiers: Vec<String>,
-}
+use std::collections::HashMap;
 
 pub struct Config {
     pub keywords: HashMap<String, Keyword>,
@@ -100,6 +93,17 @@ impl Config {
     pub fn default_account(&self) -> Option<&Account> {
         self.accounts.iter().find(|a| a.default == true)
     }
+
+    pub fn is_inflow(&self, modifier: Option<String>) -> bool {
+        match modifier {
+            None => false,
+            Some(modifier) if modifier.is_empty() => false,
+            Some(modifier) => self
+                .accounts
+                .iter()
+                .any(|a| a.inflow_modifiers.iter().any(|m| m.contains(&modifier))),
+        }
+    }
 }
 
 static MOCK_CATEGORY: &'static str = "d3d92867-779b-453f-bf5b-0adf9859af96";
@@ -113,6 +117,8 @@ pub fn create_mock_config() -> Config {
 
     // Register with the command "100f@sb : Starbucks Coffee"
     config.create_payee_with_category_alias("sb".into(), MOCK_PAYEE.into(), "f".into());
+
+    // Set a default expense account, in this case a credit card.
     config.set_default_expense_account("Credit Card".into(), "c".into(), MOCK_ACCOUNT.into());
 
     config

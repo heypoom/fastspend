@@ -6,8 +6,6 @@ use worker::console_log;
 
 use serde::{Deserialize, Serialize};
 
-use crate::config::Account;
-
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct YnabPayload {
     pub transaction: YnabTransaction,
