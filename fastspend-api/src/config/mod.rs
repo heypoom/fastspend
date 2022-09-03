@@ -3,6 +3,7 @@ mod keyword;
 use keyword::{Keyword, KeywordType};
 use std::collections::HashMap;
 
+#[derive(PartialEq)]
 pub struct Account {
     pub id: String,
     pub title: String,
@@ -50,6 +51,20 @@ impl Config {
         self.keywords.get(&alias)
     }
 
+    pub fn set_default_expense_account(&mut self, name: String, alias: String, id: String) -> () {
+        if self.default_account() != None {
+            return;
+        }
+
+        self.accounts.push(Account {
+            id: id,
+            title: name,
+            default: true,
+            inflow: false,
+            modifiers: vec![alias],
+        });
+    }
+
     pub fn default_account(&self) -> Option<&Account> {
         self.accounts.iter().find(|a| a.default == true)
     }
@@ -62,13 +77,11 @@ pub fn create_mock_config() -> Config {
     config.add_category("f".into(), MOCK_CATEGORY.into(), None);
     config.add_payee("sb".into(), "Starbucks".into());
 
-    config.accounts.push(Account {
-        id: "f076943a-aa68-46d5-a78f-00880fa8f067".into(),
-        title: "Credit Card".into(),
-        default: true,
-        inflow: false,
-        modifiers: vec!["c".into()],
-    });
+    config.set_default_expense_account(
+        "Credit Card".into(),
+        "c".into(),
+        "f076943a-aa68-46d5-a78f-00880fa8f067".into(),
+    );
 
     config
 }

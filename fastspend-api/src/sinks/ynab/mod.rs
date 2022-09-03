@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 use chrono::Utc;
 use reqwest::{self};
-use worker::{console_log, Date};
+use worker::console_log;
 
 use serde::{Deserialize, Serialize};
 
