@@ -1,4 +1,4 @@
-name = "" # todo
+name = "fastspend-api"
 workers_dev = true
 
 main = "build/worker/shim.mjs"

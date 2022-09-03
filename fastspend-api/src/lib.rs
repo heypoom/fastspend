@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use sinks::ynab::TransactionInput;
 use utils::log_request;
-use worker::{event, Env, Request, Response, Result, Router};
+use worker::{event, wasm_bindgen::UnwrapThrowExt, Env, Request, Response, Result, Router};
 
 mod sinks;
 mod utils;
@@ -24,22 +24,21 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
         .post_async("/command", |mut req, ctx| async move {
             let payload = req.json::<CommandPayload>().await;
 
+            let ynab_budget_id = ctx.secret("YNAB_BUDGET_ID")?.to_string();
+            let ynab_token = ctx.secret("YNAB_TOKEN")?.to_string();
+
             if let Ok(payload) = payload {
                 let input = TransactionInput {
-                    account_id: "NOOP".to_owned(),
-                    category_id: "NOOP".to_owned(),
+                    account_id: "TODO".to_owned(),
+                    category_id: "TODO".to_owned(),
                     flag_color: "red".to_owned(),
                     payee_name: "Automation Test".to_owned(),
                     memo: "From Automation Test".to_owned(),
                     amount: 10.20,
                 };
 
-                let _result = sinks::ynab::create_ynab_transaction(
-                    input,
-                    "NOOP".to_owned(),
-                    "NOOP".to_owned(),
-                )
-                .await;
+                let _result =
+                    sinks::ynab::create_ynab_transaction(input, ynab_budget_id, ynab_token).await;
 
                 return Response::ok(payload.command);
             }
