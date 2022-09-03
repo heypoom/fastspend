@@ -2,8 +2,12 @@ use handler::command_handler;
 use utils::log_request;
 use worker::{event, Env, Request, Response, Result, Router};
 
+#[macro_use]
+extern crate pest_derive;
+
 pub mod config;
 pub mod handler;
+pub mod parser;
 pub mod sinks;
 pub mod utils;
 
