@@ -1,9 +1,10 @@
 mod keyword;
 
 use keyword::{Keyword, KeywordType};
+use serde::Serialize;
 use std::collections::HashMap;
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Default, Debug, Clone, Serialize)]
 pub struct Account {
     pub id: String,
     pub title: String,

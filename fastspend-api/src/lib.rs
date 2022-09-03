@@ -39,14 +39,15 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
                 }
 
                 let tx_info = keyword.unwrap().into_transaction();
+                let amount = 1999.20;
 
                 let input = TransactionInput {
-                    account_id: account.id.clone(),
+                    account: account.clone(),
                     category_id: tx_info.category_id,
                     payee_name: tx_info.payee,
                     flag_color: None,
                     memo: None,
-                    amount: 1999.20,
+                    amount: amount,
                 };
 
                 let _result =

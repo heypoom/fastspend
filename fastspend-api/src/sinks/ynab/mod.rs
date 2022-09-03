@@ -1,10 +1,12 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, ops::Neg};
 
 use chrono::Utc;
 use reqwest::{self};
 use worker::console_log;
 
 use serde::{Deserialize, Serialize};
+
+use crate::config::Account;
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct YnabPayload {
@@ -25,7 +27,7 @@ pub struct YnabTransaction {
 }
 
 pub struct TransactionInput {
-    pub account_id: String,
+    pub account: Account,
     pub category_id: Option<String>,
     pub flag_color: Option<String>,
     pub payee_name: Option<String>,
@@ -47,17 +49,25 @@ pub async fn create_ynab_transaction(
 
     let TransactionInput {
         amount,
-        account_id,
+        account,
         category_id,
         payee_name,
         flag_color,
         memo,
     } = input;
 
+    let amount_in_millis = (amount * 1000.0) as i64;
+
+    let negated_amount = if account.inflow == true {
+        amount_in_millis
+    } else {
+        amount_in_millis.neg()
+    };
+
     let payload = YnabPayload {
         transaction: YnabTransaction {
-            account_id: account_id,
-            amount: (amount * 1000.0) as i64,
+            account_id: account.id,
+            amount: negated_amount,
             payee_name: payee_name,
             category_id: category_id,
             memo: memo,
