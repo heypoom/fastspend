@@ -2,12 +2,13 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
-use super::Config;
+use super::{Account, Config};
 
 #[derive(Debug, Default, Serialize, Deserialize)]
 pub struct ConfigFile {
     pub categories: HashMap<String, ConfigDefinition>,
     pub payees: HashMap<String, ConfigDefinition>,
+    pub accounts: Vec<Account>,
 }
 
 #[derive(Debug, Default, Serialize, Deserialize)]
@@ -32,6 +33,10 @@ pub fn parse_config_file(file: ConfigFile) -> Config {
 
     for (alias, data) in file.categories {
         config.register_category(alias, data.id, Some(data.title))
+    }
+
+    for account in file.accounts {
+        config.accounts.push(account)
     }
 
     config

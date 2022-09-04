@@ -1,4 +1,23 @@
 {
+  "accounts": [
+    {
+      "id": "73592552-4063-44d5-9f44-6b59971ba9ac",
+      "title": "Credit Card",
+      "default": true,
+      "modifiers": [{"type": "OUTFLOW", "alias": "c"}]
+    },
+    {
+      "id": "f076943a-aa68-46d5-a78f-00880fa8f067",
+      "title": "Payroll",
+      "default": false,
+      "modifiers": [
+        {"type": "OUTFLOW", "alias": "d"},
+        {"type": "OUTFLOW", "alias": "t"},
+        {"type": "INFLOW", "alias": "i"},
+        {"type": "INFLOW", "alias": "r"}
+      ]
+    }
+  ],
   "categories": {
     "card": {
       "id": "2c4692f7-9435-47a5-818c-b63ebe85e055",

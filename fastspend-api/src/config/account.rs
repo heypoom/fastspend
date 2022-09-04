@@ -1,18 +1,20 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(PartialEq, Debug, Clone, Serialize)]
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize, Default)]
 pub enum ModifierType {
-    INFLOW,
+    #[default]
     OUTFLOW,
+
+    INFLOW,
 }
 
-#[derive(PartialEq, Debug, Clone, Serialize)]
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize, Default)]
 pub struct Modifier {
     pub r#type: ModifierType,
     pub alias: String,
 }
 
-#[derive(PartialEq, Debug, Clone, Serialize)]
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize, Default)]
 pub struct Account {
     pub id: String,
     pub title: String,
