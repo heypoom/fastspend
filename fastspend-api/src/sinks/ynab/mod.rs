@@ -36,8 +36,8 @@ pub struct TransactionInput {
 
 pub async fn create_ynab_transaction(
     input: TransactionInput,
-    budget_id: String,
-    authorization_token: String,
+    budget_id: &String,
+    authorization_token: &String,
 ) -> std::result::Result<bool, reqwest::Error> {
     let endpoint = format!(
         "https://api.youneedabudget.com/v1/budgets/{}/transactions",

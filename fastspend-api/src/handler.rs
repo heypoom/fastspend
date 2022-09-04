@@ -5,6 +5,7 @@ use crate::{
     config,
     parser::parse_command,
     sinks::{self, ynab::TransactionInput},
+    HandlerContext,
 };
 
 #[derive(Serialize, Deserialize)]
@@ -14,12 +15,9 @@ struct CommandPayload {
 
 pub async fn command_handler(
     mut req: Request,
-    ctx: RouteContext<()>,
+    ctx: RouteContext<HandlerContext>,
 ) -> Result<worker::Response, worker::Error> {
     let payload = req.json::<CommandPayload>().await;
-
-    let ynab_budget_id = ctx.secret("YNAB_BUDGET_ID")?.to_string();
-    let ynab_token = ctx.secret("YNAB_TOKEN")?.to_string();
 
     let mut config = config::create_mock_config();
 
@@ -69,12 +67,16 @@ pub async fn command_handler(
                 amount: command.amount,
             };
 
-            let _result = sinks::ynab::create_ynab_transaction(
-                input,
-                ynab_budget_id.clone(),
-                ynab_token.clone(),
-            )
-            .await;
+            let budget_id = ctx.data.ynab_budget_id.clone();
+            let token = ctx.data.ynab_token.clone();
+
+            let tx = || async move {
+                let _result = sinks::ynab::create_ynab_transaction(input, &budget_id, &token).await;
+
+                ()
+            };
+
+            ctx.data.worker_context.wait_until(tx());
         }
 
         return Response::ok(payload.command);
