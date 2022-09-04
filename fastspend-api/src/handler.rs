@@ -26,6 +26,7 @@ pub async fn command_handler(
         let commands = parse_command(input);
 
         for command in commands {
+            let modifier = command.modifier.clone();
             let explicit_payee = command.payee_name.clone();
 
             console_log!("Command: {:?}", command);
@@ -54,7 +55,7 @@ pub async fn command_handler(
             };
 
             let input = TransactionInput {
-                inflow: account.is_inflow(None),
+                inflow: account.is_inflow(modifier),
                 account_id: account.id.clone(),
                 category_id: keyword.category_id.clone(),
                 payee_name: payee_name,
