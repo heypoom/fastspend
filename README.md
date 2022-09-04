@@ -4,15 +4,17 @@ Log your daily spending lightning fast with short text snippets! FastSpend is a 
 
 FastSpend aims to be service-agnostic, so you can log your spending to multiple sinks. Currently, it is implemented for the You Need A Budget API (YNAB API). Soon, we may offer plugins for logging to Airtable, Firebase, Plain Text, etc.
 
-FastSpend also aims to provide various frontends to log your spending. Currently, we offer a Svelte-powered progressive web app. Soon, we may implement a Rust-powered CLI, Raycast Extension and a chatbot, 
+FastSpend also aims to provide various frontends to log your spending. Currently, we offer a Svelte-powered progressive web app. Soon, we may implement a Rust-powered CLI, Raycast Extension and a chatbot,
 
 ## Syntax
 
 - Use keywords to add spending quickly
+
   - Example: `100f`
   - The keyword can either represent a category (e.g. `f` is food), or a payee (e.g. `kfc` is Kentucky Fried Chicken)
 
 - Use the exclamation mark (`!`) to add modifiers:
+
   - Example: `100f!t`
   - Outflow Modifiers:
     - credit card: `!c` (default payment method)
@@ -22,11 +24,17 @@ FastSpend also aims to provide various frontends to log your spending. Currently
     - income: `!i`
     - refund or reimbursement: `!r`
 
-- Use the at sign (`@`) to explicitly denote that the keyword represents a payee
-  - Example: `100kfc`
-  - this is used when the keyword is ambiguous, and we're not sure if it is a category or a payee
+- Use the colon (`:`) sign to associate a payee. This is useful when the payee does not yet have a keyword alias.
 
-- Use the at sign (`@`) in conjunction with the colon sign (`:`) to add a new payee
+  - Example: `400s : Starbucks` associates the transaction with the Starbucks payee.
+
+- Use the hyphen sign (`-`) to add a memo, so you can remember what the transaction is for.
+
+  - Example: `100f - ice cream truck`
+  - You can use it with the payee syntax: `400s : Starbucks - venti caramel macchiato`
+
+- Use the at sign (`@`) in conjunction with the colon sign (`:`) to register a new payee alias
+
   - Example: `100f@sb : Starbucks` associates the `sb` keyword with the `Starbucks` payee, and utilizes the "Food" (`f`) category
 
 - Batch add multiple transactions with the comma sign (`,`):
@@ -44,7 +52,6 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - The frontend is built with Svelte and TypeScript as a PWA (Progressive Web Application).
 - The API is built with Rust and Cloudflare Workers.
 
-
 ## Roadmap
 
 - [x] Setup Cloudflare Workers locally
@@ -60,6 +67,7 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
   - [ ] Generate personal access token for each FastSpend users
 
 **Frontends**
+
 - [ ] Raycast Command
 - [ ] Rust-powered CLI to call the API, built with Rust. e.g. `sf 1000sb`
 - [ ] Chatbot Integration - Messenger or LINE?
@@ -67,8 +75,10 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [ ] iOS widget or application, powered by Swift?
 
 **Syntax Support**
+
 - [x] Batch transactions with `,`
 - [x] Use colons (`:`) to add payee name
+- [x] Use hyphen (`-`) to add a memo
 - [x] Use `!` to add modifier: `!t` for transfer, `!r` for refund/reimburse, `!d` for debit, `!i` for income
 - [x] Keyword can be either budget or payee.
 - [x] Explicitly target payee with `@` sign
@@ -78,22 +88,24 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [ ] Command to register payee - e.g. `!p fc Factory Coffee $ Drinks`
 
 **Logging Sources**
+
 - [x] YNAB API (You Need A Budget API)
 - [ ] Airtable
 - [ ] Firebase
 
 **Webapp Features**
+
 - [ ] Implement Syntax Highlighting in PWA
 - [ ] Implement Autocompletion in PWA
 - [ ] Implement standard PWA features (e.g. offline-first support, manifest)
 
 **Write-up**
+
 - [ ] Write a Blog on this
 
 **Features Ideas**
+
 - [ ] Automatically log spending from notification interception or web scraping, automatically sync and match
 - [ ] Pre-populated widget UI with spending behaviour, use previous transaction data or logged widget/spending group. One-tap to log spending from history.
 - [ ] Multiple logging backends as Rust plugin: YNAB API, Airtable, Plain Text, Firebase. Should be able to write unit test
 - [ ] Natural language input instead of command-based input
-
-
