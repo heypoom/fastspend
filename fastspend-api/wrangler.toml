@@ -4,6 +4,10 @@ workers_dev = true
 main = "build/worker/shim.mjs"
 compatibility_date = "2022-01-20"
 
+routes = [
+	{ pattern = "api.fastspend.poom.dev", custom_domain = true }
+]
+
 [vars]
 WORKERS_RS_VERSION = "0.0.9"
 
