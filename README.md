@@ -81,7 +81,6 @@ I'm using the You Need a Budget (YNAB) app to manage my budgets, but their app t
 - [x] Use hyphen (`-`) to add a memo
 - [x] Use `!` to add modifier: `!t` for transfer, `!r` for refund/reimburse, `!d` for debit, `!i` for income
 - [x] Keyword can be either budget or payee.
-- [x] Explicitly target payee with `@` sign
 - [x] Use `$` to add tags, e.g. `$5` is 5 star rating
 - [ ] Use emojis as keyword - e.g. ☕️ for Starbucks
 - [ ] Command to register budget categories - e.g. `!c f Food, 1689063412`
