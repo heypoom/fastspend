@@ -60,7 +60,7 @@ pub async fn command_handler(
                 category_id: keyword.category_id.clone(),
                 payee_name: payee_name,
                 flag_color: None,
-                memo: None,
+                memo: command.memo,
                 amount: command.amount,
                 payee_id: keyword.payee_id.clone(),
             };

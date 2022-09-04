@@ -9,11 +9,14 @@ pub struct LogCommand {
     pub amount: f64,
     pub keyword: String,
 
-    // Explicit payee alias with (@)
+    // Explicit payee alias with at (@)
     pub payee_key: Option<String>,
 
-    // Payee name registered with (:)
+    // Payee name registered with colon (:)
     pub payee_name: Option<String>,
+
+    // Add a memo with dash (-)
+    pub memo: Option<String>,
 
     // Account and inflow/outflow modifier with (!)
     pub modifier: Option<String>,
@@ -43,6 +46,7 @@ pub fn parse_command(input: String) -> Vec<LogCommand> {
                     Rule::payee_name => command.payee_name = Some(value.into()),
                     Rule::modifier => command.modifier = Some(value.into()),
                     Rule::tags => command.tags = Some(value.into()),
+                    Rule::memo => command.memo = Some(value.into()),
                     _ => {}
                 }
             });
@@ -72,5 +76,15 @@ mod tests {
         assert_eq!(cmd.payee_name, Some("Starbucks".into()));
         assert_eq!(cmd.modifier, Some("d".into()));
         assert_eq!(cmd.tags, Some("ok".into()));
+    }
+
+    #[test]
+    fn parse_payee_name_with_memo() {
+        let commands = parse_command("50s : TE Time and Space - nice drink".into());
+        let cmd = &commands[0];
+        assert_eq!(cmd.amount, 50.0);
+        assert_eq!(cmd.keyword, "s".to_owned());
+        assert_eq!(cmd.payee_name, Some("TE Time and Space".into()));
+        assert_eq!(cmd.memo, Some("nice drink".into()));
     }
 }

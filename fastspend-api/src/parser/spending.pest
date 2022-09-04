@@ -7,14 +7,16 @@ transaction = {
   ~ keyword
   ~ ("@" ~ payee_key | "!" ~ modifier | "$" ~ tags)+?
   ~ ( WHITESPACE? ~ ":" ~ WHITESPACE? ~ payee_name)?
+  ~ ( WHITESPACE? ~ "-" ~ WHITESPACE? ~ memo)?
 }
 
 amount = { ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? }
 
-keyword = { ASCII_ALPHANUMERIC+ }
+keyword = @{ ASCII_ALPHANUMERIC+ }
 payee_key = { ASCII_ALPHANUMERIC+ }
 modifier = @{ ASCII_ALPHANUMERIC+ }
 tags = @{ ASCII_ALPHANUMERIC+ }
 payee_name = { ASCII_ALPHANUMERIC+ }
+memo = { ASCII_ALPHANUMERIC+ }
 
 WHITESPACE = _{ " " }
