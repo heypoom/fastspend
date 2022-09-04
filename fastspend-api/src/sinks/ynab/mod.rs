@@ -15,6 +15,7 @@ pub struct YnabPayload {
 pub struct YnabTransaction {
     pub account_id: String,
     pub amount: i64,
+    pub payee_id: Option<String>,
     pub payee_name: Option<String>,
     pub category_id: Option<String>,
     pub memo: Option<String>,
@@ -29,6 +30,7 @@ pub struct TransactionInput {
     pub inflow: bool,
     pub category_id: Option<String>,
     pub flag_color: Option<String>,
+    pub payee_id: Option<String>,
     pub payee_name: Option<String>,
     pub memo: Option<String>,
     pub amount: f64,
@@ -54,6 +56,7 @@ pub async fn create_ynab_transaction(
         payee_name,
         flag_color,
         memo,
+        payee_id,
     } = input;
 
     let amount_in_millis = (amount * 1000.0) as i64;
@@ -66,12 +69,13 @@ pub async fn create_ynab_transaction(
 
     let payload = YnabPayload {
         transaction: YnabTransaction {
-            account_id: account_id,
+            account_id,
             amount: negated_amount,
-            payee_name: payee_name,
-            category_id: category_id,
-            memo: memo,
-            flag_color: flag_color,
+            payee_id,
+            payee_name,
+            category_id,
+            memo,
+            flag_color,
             approved: true,
             cleared: "cleared".into(),
             date: Utc::today().format("%Y-%m-%d").to_string(),

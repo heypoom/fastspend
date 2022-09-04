@@ -19,7 +19,7 @@ pub async fn command_handler(
 ) -> Result<worker::Response, worker::Error> {
     let payload = req.json::<CommandPayload>().await;
 
-    let mut config = config::create_mock_config();
+    let config = &config::STATIC_CONFIG;
 
     if let Ok(payload) = payload {
         let input = payload.command.clone();
@@ -29,10 +29,6 @@ pub async fn command_handler(
             let explicit_payee = command.payee_name.clone();
 
             console_log!("Command: {:?}", command);
-
-            if let Some(payee_name) = command.payee_name {
-                config.register_payee(command.payee_key.unwrap(), payee_name);
-            }
 
             let account = config::account_by_modifier(&config.accounts, command.modifier);
 
@@ -65,6 +61,7 @@ pub async fn command_handler(
                 flag_color: None,
                 memo: None,
                 amount: command.amount,
+                payee_id: keyword.payee_id.clone(),
             };
 
             let budget_id = ctx.data.ynab_budget_id.clone();

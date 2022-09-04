@@ -1,11 +1,12 @@
-use std::future::Future;
-
 use handler::command_handler;
 use utils::log_request;
 use worker::{event, Env, Request, Response, Result, Router};
 
 #[macro_use]
 extern crate pest_derive;
+
+#[macro_use]
+extern crate lazy_static;
 
 pub mod config;
 pub mod handler;

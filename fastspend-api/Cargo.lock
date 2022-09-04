@@ -191,6 +191,7 @@ dependencies = [
  "cfg-if",
  "chrono",
  "console_error_panic_hook",
+ "lazy_static",
  "pest",
  "pest_derive",
  "reqwest",

@@ -1,0 +1,382 @@
+{
+  "categories": {
+    "card": {
+      "id": "2c4692f7-9435-47a5-818c-b63ebe85e055",
+      "title": "Credit Card"
+    },
+    "d": {
+      "id": "55e21f9d-2d83-4dbe-8d51-aabc50cc9828",
+      "title": "Dining"
+    },
+    "s": {
+      "id": "3d371c38-dd80-4618-bcaf-5f1013f4b3ff",
+      "title": "Snacks"
+    },
+    "g": {
+      "id": "d3d92867-779b-453f-bf5b-0adf9859af96",
+      "title": "Groceries"
+    },
+    "u": {
+      "id": "ef06e8fa-d8e3-442d-a7e6-36888c85837f",
+      "title": "Utility"
+    },
+    "rentc": {
+      "id": "5e1f2c0b-84b7-4a75-8d8f-c68ae1f23ce7",
+      "title": "Rent"
+    },
+    "el": {
+      "id": "54506c9b-3184-4887-92b4-ae82c9272c5e",
+      "title": "Electricity"
+    },
+    "net": {
+      "id": "9a2d363a-5f8d-4529-97bd-1ed6d646fc51",
+      "title": "Internet"
+    },
+    "m": {
+      "id": "92808d74-c114-4cc4-8220-7877c75046b3",
+      "title": "Metro"
+    },
+    "t": {
+      "id": "cdbd6da1-2b7a-4cd7-a664-0d78d7f0be64",
+      "title": "Taxi"
+    },
+    "a": {
+      "id": "3df66b78-316d-422d-8b52-72b251f55307",
+      "title": "Apps"
+    },
+    "su": {
+      "id": "777b3c99-eaba-4669-8d8e-f65317027d57",
+      "title": "Subscriptions"
+    },
+    "i": {
+      "id": "04f12f2d-b632-448c-bbf9-d016e6552e0d",
+      "title": "Inflow: Ready to Assign"
+    },
+    "none": {
+      "id": "37084a45-7913-4605-84f4-218a4d2c807c",
+      "title": "Uncategorized"
+    },
+    "shop": {
+      "id": "cdbd93d8-d73a-4830-854e-60e33ca98dd6",
+      "title": "Shopping"
+    },
+    "spon": {
+      "id": "633d80b3-573a-4c9a-ba63-7cbd6f6108b2",
+      "title": "Sponsorship"
+    },
+    "b": {
+      "id": "e4bba4a1-e383-4739-8d8a-7aa632feb9e0",
+      "title": "Books"
+    }
+  },
+  "payees": {
+    "shopee": {
+      "id": "dbbaa4af-bb0c-4f6d-800b-a545bf73abd2",
+      "title": "Shopee"
+    },
+    "happening": {
+      "id": "10f62e38-92eb-4714-b2b0-1090e753a12c",
+      "title": "Happening & Friends"
+    },
+    "cf": {
+      "id": "b69a9cc4-dca1-4d13-b295-d2bd6686f5c8",
+      "title": "Google Cloudflare"
+    },
+    "ynab": {
+      "id": "76aa0a28-c4af-4425-b2e3-0e8d06cee378",
+      "title": "YNAB App"
+    },
+    "gg": {
+      "id": "4173a135-046e-4285-b290-1d438f4c63bd",
+      "title": "Google"
+    },
+    "yt": {
+      "id": "270d6284-0c9a-4bae-a55b-eae1038fa075",
+      "title": "YouTube Premium"
+    },
+    "gsuite": {
+      "id": "35d7e5a2-cd55-4cdf-866d-3b1490d8bc28",
+      "title": "G Suite"
+    },
+    "apple": {
+      "id": "1de8d3d3-be11-4d22-b4f6-4f4b58dd8cc5",
+      "title": "Apple"
+    },
+    "setapp": {
+      "id": "959862e0-f454-4988-b969-ce33d009ea78",
+      "title": "Setapp"
+    },
+    "patreon": {
+      "id": "4ac2d3db-d819-4df9-8ffb-b3fceb765f0c",
+      "title": "Patreon"
+    },
+    "ais": {
+      "id": "2da39585-71ed-4943-ba1e-4108fff84f80",
+      "title": "AIS"
+    },
+    "donki": {
+      "id": "8df8fdac-becc-4610-a4d9-d9c15972b8c8",
+      "title": "Donki"
+    },
+    "gm": {
+      "id": "462542fe-6719-494a-a3e6-28a220e983d2",
+      "title": "Grab Mart"
+    },
+    "meatworks": {
+      "id": "e29c170e-a7c6-4b62-a086-44fb68ad8d48",
+      "title": "Meatworks"
+    },
+    "maxv": {
+      "id": "ad190eff-890a-40c9-8bfb-42589275761a",
+      "title": "MaxValu"
+    },
+    "tops": {
+      "id": "895c2e73-bc90-41a2-b8e0-7a2096606997",
+      "title": "Tops"
+    },
+    "gplay": {
+      "id": "12ac0bf0-fe68-4edf-ae7e-2ce0ecdea4a1",
+      "title": "Google Play"
+    },
+    "pep": {
+      "id": "40a5959e-e2fd-42f3-9751-252bb1d8ab14",
+      "title": "Pepper Lunch"
+    },
+    "eatamare": {
+      "id": "126ae2c5-1f31-48e0-9d15-4a73e62488bf",
+      "title": "Eat Am Are"
+    },
+    "coco": {
+      "id": "76ee12a7-3bcc-4e7e-8063-936895d32507",
+      "title": "Coco Ichibanya"
+    },
+    "sizz": {
+      "id": "98378919-5e08-49e5-a8cc-0cd8ddb1dee9",
+      "title": "Sizzler"
+    },
+    "teenoi": {
+      "id": "d5f5509d-3654-481b-a829-b1900ba12d11",
+      "title": "Sukee Teenoi"
+    },
+    "kubkao": {
+      "id": "4aad2477-123c-4d14-bd1c-cfb87d0c0e55",
+      "title": "Kub Kao Kub Pla"
+    },
+    "maid": {
+      "id": "74bca0bd-ca1a-4deb-a271-321f1634a432",
+      "title": "Maidreamin"
+    },
+    "aoringo": {
+      "id": "b954dc87-50d1-4ab3-b7a3-6af3926763bd",
+      "title": "Aoringo"
+    },
+    "ott": {
+      "id": "1160f7bb-dc22-4af3-8fad-fc780e9898bd",
+      "title": "On The Table"
+    },
+    "taco": {
+      "id": "e4640e94-abbc-402e-8986-9b2a2573c3da",
+      "title": "Taco Bell"
+    },
+    "maguro": {
+      "id": "bd3d6e5f-c23b-4d3f-9e04-d53c3dd45c28",
+      "title": "Maguro"
+    },
+    "katsuya": {
+      "id": "e6d83317-bda9-4e52-aa33-07e555f10bf8",
+      "title": "Katsuya"
+    },
+    "omu": {
+      "id": "d59c037e-468b-410c-987b-6a559ae33aa5",
+      "title": "OMU JAPANESE OMU-CENTRAL"
+    },
+    "seoga": {
+      "id": "5b8aff9c-31cd-48b2-8e18-12368c45068f",
+      "title": "SEOGA AND COOK"
+    },
+    "shinla": {
+      "id": "41f2c8ba-d538-4670-a6e2-6a39e1168e29",
+      "title": "Shinla TDPK"
+    },
+    "paradai": {
+      "id": "f34f538a-f9e2-433b-9834-c968e66ff213",
+      "title": "Paradai Chocolate at BACC"
+    },
+    "siamtaka": {
+      "id": "640b4c92-4329-4d68-987a-e2ad3dbcb141",
+      "title": "Siam Takashimaya"
+    },
+    "hdl": {
+      "id": "c311c9b9-8035-4f25-a726-9d97df563c62",
+      "title": "HAI DI LAO HOT POT"
+    },
+    "paul": {
+      "id": "1684b3f2-f3ab-446e-b444-0b1d470ca8aa",
+      "title": "Paul Le Cafe"
+    },
+    "plwn": {
+      "id": "85f25259-2ab9-43db-b497-4f5845c2f59a",
+      "title": "Plearnwan at TDPK"
+    },
+    "tmzp": {
+      "id": "934baa13-106f-4660-8381-72d156a8eb85",
+      "title": "Tum Tum Zapp"
+    },
+    "tokidoki": {
+      "id": "dd3cb812-7f56-41f8-aad9-3b844d066295",
+      "title": "Toki Doki Curry"
+    },
+    "bts": {
+      "id": "da864edd-c051-44ca-9f45-b6e11a8be5e2",
+      "title": "BTS"
+    },
+    "lmt": {
+      "id": "cab635d2-422e-4a4a-878f-bf08eaaaa9a7",
+      "title": "Line Man Taxi"
+    },
+    "gb": {
+      "id": "a96fdb89-594a-4ff5-8eeb-a503e6e33604",
+      "title": "Grab Bike"
+    },
+    "taxi": {
+      "id": "df017215-9fd2-40c1-8ec2-0abc7e21b13b",
+      "title": "Taxi"
+    },
+    "grab": {
+      "id": "19015d4f-4549-4cfa-94fe-777e7ffb41cd",
+      "title": "WWW.GRAB.COM"
+    },
+    "kino": {
+      "id": "2135709d-0176-4ef5-8834-68df07251472",
+      "title": "Kinokuniya"
+    },
+    "muji": {
+      "id": "329c6114-fb75-4135-9189-fe02ec0e4349",
+      "title": "Muji"
+    },
+    "peylaa": {
+      "id": "714c464a-4cd5-4c3c-a0bf-75697472ba8a",
+      "title": "Peylaa"
+    },
+    "lmwn": {
+      "id": "11c46088-6b34-4f3d-a3db-371a3c5a867a",
+      "title": "LINE MAN WONGNAI"
+    },
+    "seekster": {
+      "id": "d3527305-7fda-4882-8866-f5b3c9b8123a",
+      "title": "Seekster"
+    },
+    "bnh": {
+      "id": "8ae2984f-e093-43cf-bbaa-07dd909bd1ad",
+      "title": "BNH Hospital"
+    },
+    "owndays": {
+      "id": "2fe0ce47-5f20-47b0-994e-fff8b623baaa",
+      "title": "Owndays"
+    },
+    "gowb": {
+      "id": "1763a13a-2904-4b9d-bf15-568a10e5f769",
+      "title": "Gowabi"
+    },
+    "lush": {
+      "id": "e582d2d7-7df0-461e-924a-bc845f686053",
+      "title": "Lush"
+    },
+    "ikea": {
+      "id": "2d8e1aca-2078-4c61-adec-d3fd5d341cb6",
+      "title": "Ikea"
+    },
+    "steam": {
+      "id": "57444bd4-097f-407a-a913-81898e6b05ac",
+      "title": "Steam"
+    },
+    "nin": {
+      "id": "cd5c7adf-21b8-4ecf-b920-4da99e8c2847",
+      "title": "Nintendo"
+    },
+    "agoda": {
+      "id": "362419ab-aad4-486b-9356-847cdcf64400",
+      "title": "Agoda"
+    },
+    "rbh": {
+      "id": "59f074da-f8d8-4173-9eb2-04d1d83c6e12",
+      "title": "Robinhood"
+    },
+    "binance": {
+      "id": "9f7db8e3-70cd-404b-8a05-6b04ebdd4d92",
+      "title": "Binance"
+    },
+    "snp": {
+      "id": "73067099-7855-4927-83db-a65be5b7c921",
+      "title": "S&P"
+    },
+    "krobkun": {
+      "id": "a35885b7-3efd-45b2-a783-21b702426f98",
+      "title": "KrobKun"
+    },
+    "ledalat": {
+      "id": "12f6fc8b-d2df-4f39-bce9-aed981ffc20e",
+      "title": "Le Dalat Restaurant"
+    },
+    "wuag": {
+      "id": "6cc9609a-656a-494f-9203-9fa99af2cf28",
+      "title": "Wuagyu"
+    },
+    "anns": {
+      "id": "34e130fd-0b5c-4b47-a15a-77bb17e38b89",
+      "title": "Auntie Annes"
+    },
+    "gf": {
+      "id": "3f9acfd5-935c-4e80-8089-134aaeaa460a",
+      "title": "Grab Food"
+    },
+    "coway": {
+      "id": "a095cec5-8360-470e-a147-396d46b25be0",
+      "title": "Coway"
+    },
+    "rent": {
+      "id": "813833df-92eb-41df-beba-a75cddf6d751",
+      "title": "Rent at Whizdom Inspire Sukhumvit"
+    },
+    "gcloud": {
+      "id": "709e1059-1c30-4fef-a750-0ebc48723bc2",
+      "title": "Google Cloud"
+    },
+    "eltoro": {
+      "id": "3b45513b-0eac-419b-9672-916ee3cf49c2",
+      "title": "El Toro"
+    },
+    "gt": {
+      "id": "b76c7da7-9b73-4a44-bca9-a0d4fa7eacc1",
+      "title": "Grab Taxi"
+    },
+    "711": {
+      "id": "5dcfa341-48a2-4c8d-af80-40b1c226ead1",
+      "title": "7-11"
+    },
+    "holly": {
+      "id": "a6646cde-c392-498d-be18-c04953b51531",
+      "title": "Holly's coffee"
+    },
+    "docclub": {
+      "id": "6f566e95-9a9d-4634-9ddf-d3f87e9d68b0",
+      "title": "Doc Club & Pub"
+    },
+    "gfsh": {
+      "id": "3751dc4a-3560-42fa-a32d-91a54cd934bc",
+      "title": "Getfresh"
+    },
+    "kfc": {
+      "id": "6ffc32c6-6a6f-487e-84a1-c2bfc63791ab",
+      "title": "KFC"
+    },
+    "sbx": {
+      "id": "10a7a13f-b47a-4c08-9b7d-d05e8532b2de",
+      "title": "Starbucks"
+    },
+    "te": {
+      "id": "ad1a1564-bfad-43cb-ac8b-733d2eac5f3f",
+      "title": "TE Time and Space"
+    }
+  }
+}
