@@ -5,3 +5,9 @@
 body {
 	margin: 0;
 }
+
+.v-fill {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+

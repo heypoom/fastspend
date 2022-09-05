@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use worker::{console_log, Request, Response, RouteContext};
+use worker::{console_log, Cors, Request, Response, RouteContext};
 
 use crate::{
     config,
@@ -8,9 +8,24 @@ use crate::{
     HandlerContext,
 };
 
+type Res = Result<Response, worker::Error>;
+
 #[derive(Serialize, Deserialize)]
 struct CommandPayload {
     command: String,
+}
+
+fn ok(body: impl Into<String>) -> Res {
+    cors(Response::ok(body))
+}
+
+fn err(body: impl Into<String>, status: u16) -> Res {
+    cors(Response::error(body, status))
+}
+
+fn cors(res: Res) -> Res {
+    res.unwrap()
+        .with_cors(&Cors::default().with_origins(vec!["*"]))
 }
 
 pub async fn command_handler(
@@ -34,13 +49,13 @@ pub async fn command_handler(
             let account = config::account_by_modifier(&config.accounts, command.modifier);
 
             if account == None {
-                return Response::error("account not found", 500);
+                return err("account not found", 500);
             }
 
             let keyword = config.get_keyword(command.keyword);
 
             if keyword == None {
-                return Response::error("keyword undefined", 400);
+                return err("keyword undefined", 400);
             }
 
             let keyword = keyword.unwrap();
@@ -77,8 +92,8 @@ pub async fn command_handler(
             ctx.data.worker_context.wait_until(tx());
         }
 
-        return Response::ok(payload.command);
+        return ok("{\"status\": \"ok\"}");
     }
 
-    Response::error("error", 400)
+    err("error", 400)
 }
