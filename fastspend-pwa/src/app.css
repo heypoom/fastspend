@@ -15,6 +15,10 @@ body {
   min-height: -webkit-fill-available;
 }
 
+input {
+	-webkit-appearance: none;
+}
+
 .error-input {
 	@apply bg-red-500 text-stone-100;
   @apply focus:shadow-red-300 !important;
