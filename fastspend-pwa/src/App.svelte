@@ -35,6 +35,7 @@
       class:loading-input={loading}
       bind:value={command}
       on:keypress={(e) => e.key === 'Enter' && submit()}
+      autofocus
     />
 
     {#if error}
