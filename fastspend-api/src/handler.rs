@@ -24,8 +24,7 @@ fn err(body: impl Into<String>, status: u16) -> Res {
 }
 
 fn cors(res: Res) -> Res {
-    res.unwrap()
-        .with_cors(&Cors::default().with_origins(vec!["*"]))
+    res.unwrap().with_cors(&Cors::new().with_origins(vec!["*"]))
 }
 
 pub async fn command_handler(

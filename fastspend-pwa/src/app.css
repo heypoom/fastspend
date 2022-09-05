@@ -11,3 +11,10 @@ body {
   min-height: -webkit-fill-available;
 }
 
+.error-input {
+	@apply bg-red-500 text-stone-100;
+}
+
+.loading-input {
+	@apply bg-neutral-700;
+}
