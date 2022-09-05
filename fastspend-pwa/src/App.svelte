@@ -28,8 +28,13 @@
   <div
     class="flex flex-col items-center justify-center min-h-screen space-y-4 mx-4"
   >
+    {#if !error && !loading}
+      <div class="text-blue-400 font-extralight">Record your expenses 💸</div>
+    {/if}
+
     <input
       type="text"
+      placeholder="112.44f"
       class="focus:outline-none bg-neutral-900 text-white px-4 py-4 text-3xl font-extralight rounded-md shadow-xl text-center focus:shadow-blue-300 focus:shadow-xl focus:ring-4 focus:ring-offset-4 focus:ring-blue-400 focus:ring-opacity-50 w-full max-w-xs"
       class:error-input={error}
       class:loading-input={loading}
@@ -39,7 +44,7 @@
     />
 
     {#if error}
-      <div class="text-red-500">{error}</div>
+      <div class="text-red-500 font-extralight">{error}</div>
     {/if}
   </div>
 </div>

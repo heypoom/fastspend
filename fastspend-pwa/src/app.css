@@ -23,6 +23,7 @@ input {
 	@apply bg-red-500 text-stone-100;
   @apply focus:shadow-red-300 !important;
 	@apply focus:ring-red-300 !important;
+	@apply placeholder:text-stone-200;
 }
 
 .loading-input {
