@@ -7,10 +7,12 @@
     loading = true
 
     try {
-      await fetch('https://api.fastspend.poom.dev/command', {
+      const res = await fetch('https://api.fastspend.poom.dev/command', {
         method: 'POST',
         body: JSON.stringify({command}),
       })
+
+      if (res.status !== 200) throw new Error(await res.text())
 
       error = null
     } catch (err) {
@@ -27,7 +29,7 @@
 >
   <input
     type="text"
-    class="bg-neutral-900 text-white px-4 py-4 text-3xl font-extralight rounded-md shadow-2xl text-center"
+    class="bg-neutral-900 text-white px-4 py-4 text-3xl font-extralight rounded-md shadow-2xl text-center focus-visible:outline-blue-500 focus-visible:outline-offset-4"
     class:error-input={error}
     class:loading-input={loading}
     bind:value={command}
@@ -35,6 +37,6 @@
   />
 
   {#if error}
-    <div class="text-red-500">Error: {error}</div>
+    <div class="text-red-500">{error}</div>
   {/if}
 </div>

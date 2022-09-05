@@ -6,6 +6,10 @@ body {
 	margin: 0;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 .v-fill {
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -13,6 +17,7 @@ body {
 
 .error-input {
 	@apply bg-red-500 text-stone-100;
+	@apply focus-visible:outline-red-500/70 !important;
 }
 
 .loading-input {
