@@ -30,7 +30,7 @@
   >
     <input
       type="text"
-      class="bg-neutral-900 text-white px-4 py-4 text-3xl font-extralight rounded-md shadow-2xl text-center focus-visible:outline-blue-500 focus-visible:outline-offset-4 w-full max-w-xs"
+      class="focus:outline-none bg-neutral-900 text-white px-4 py-4 text-3xl font-extralight rounded-md shadow-xl text-center focus:shadow-blue-300 focus:shadow-xl focus:ring-4 focus:ring-offset-4 focus:ring-blue-300 focus:ring-opacity-50 w-full max-w-xs"
       class:error-input={error}
       class:loading-input={loading}
       bind:value={command}

@@ -17,7 +17,8 @@ body {
 
 .error-input {
 	@apply bg-red-500 text-stone-100;
-	@apply focus-visible:outline-red-500/70 !important;
+  @apply focus:shadow-red-300 !important;
+	@apply focus:ring-red-300 !important;
 }
 
 .loading-input {
